@@ -17,8 +17,6 @@ var topics = [
 
 createButtons();
 
-// createFrom();
-
 
 $(document).on("click", ".gif-button", function (event) {
     event.preventDefault();
@@ -26,7 +24,7 @@ $(document).on("click", ".gif-button", function (event) {
     var queryItem = $(this).attr("data-name");
     // console.log(queryItem);
 
-    makeAPICallToGiphy(queryItem);
+    makeAPICallToGiphy(queryItem, 20);
 });
 
 $(document).on("click", ".gif-image", function (event) {
@@ -54,6 +52,13 @@ $("#submit-btn").on("click", function (event) {
     createButtons();
 });
 
+$("#add-gif-btn").on("click", function (event) {
+    event.preventDefault();
+
+    
+});
+
+
 function createButtons() {
     $("#button-section").empty();
 
@@ -66,33 +71,14 @@ function createButtons() {
     };
 };
 
-// function createFrom() {
-//     var form = $("<form>");
-//     var formGroup = $("<div>").addClass("form-group mt-3");
-//     var label = $("<label>").text("Add an animal");
-//     var input = $("<input>").addClass("form-control");
-//     input.attr("id", "add-animal");
-//     input.attr("type", "text");
-
-//     var btnSubmit = $("<button>").addClass("btn btn-primary");
-//     btnSubmit.attr("id", "submit-btn");
-//     btnSubmit.attr("type", "Submit");
-//     btnSubmit.text("Submit");
-
-//     formGroup.append(label, input);
-//     form.append(formGroup, btnSubmit);
-
-//     $("#form-section").append(form);
-// };
-
-function makeAPICallToGiphy(queryItem) {
+function makeAPICallToGiphy(queryItem, queryLimit=10) {
 
     var apiKey = "dc6zaTOxFJmzC"
     var queryURL = "https://api.giphy.com/v1/gifs/search";
     var queryParams = "?" + $.param({
         api_key: apiKey,
         q: queryItem,
-        limit: 10,
+        limit: queryLimit,
     });
     // console.log(queryParams);
 
